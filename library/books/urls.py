@@ -2,9 +2,9 @@ from django.urls import path
 from django.urls.resolvers import URLPattern
 from . import views
 
-urlpatterns= [
-    # path('timeline/<int:user_id>',views.all_tweets,name='all_tweets'),
-    # path('<int:user_id>/',views.user_tweets,name = 'user_tweets'),
-    # path('new/', views.new_tweet, name = 'new_tweet'),
-    # path('follow/', views.follow_button, name = 'follow_button')
+urlpatterns = [
+    path("create/", views.create, name="book_create"),
+    path("<int:book_id>/update", views.update, name="book_update"),
+    path("<int:book_id>/delete", views.delete, name="book_delete"),
+    path("", views.list, name="book_list"),
 ]
