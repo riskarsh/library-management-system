@@ -1,0 +1,4 @@
+venv/
+library/db.sqlite3
+*.pyc
+
