@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "books",
     "accounts",
 ]
+AUTH_USER_MODEL = "accounts.LibraryAdmin"
+LOGIN_URL = "/accounts/signin"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

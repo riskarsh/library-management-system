@@ -1,11 +1,11 @@
-{% extends "books/base.html" %}        
+{% extends "books/base.html" %}
 
-        {% block title %}Delete a Book {% endblock %}
+{% block title %}Delete a Book {% endblock %}
 
-        {% block content %}
-        <h2>Confirm delete {{book.name}}?</h2>
-        <form method="post" action = "{% url 'book_delete' book.id %}">
+{% block content %}
+    <h2>Confirm delete {{book.name}}?</h2>
+    <form method="post" action = "{% url 'book_delete' book.id %}">
         {% csrf_token %}
         <button type="submit">Delete</button>
-        </form>
-        {% endblock %}
+    </form>
+{% endblock %}

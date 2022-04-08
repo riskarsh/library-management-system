@@ -3,9 +3,11 @@ from django.shortcuts import render
 from books.models import Book
 from books.forms import BookForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def create(request):
     """Create a new entry for the book."""
     if request.method == "POST":
@@ -24,11 +26,13 @@ def create(request):
                 year=year,
             )
             b1.save()
-        return HttpResponseRedirect(reverse("book_list"))
-    form = BookForm()
+            return HttpResponseRedirect(reverse("book_list"))
+    else:
+        form = BookForm()
     return render(request, "books/create.html", {"form": form})
 
 
+@login_required
 def update(request, book_id):
     """Update the book records."""
     current_book = Book.objects.get(pk=book_id)
@@ -41,27 +45,29 @@ def update(request, book_id):
             current_book.pages = form.cleaned_data["pages"]
             current_book.year = form.cleaned_data["year"]
             current_book.save()
-        return HttpResponseRedirect(reverse("book_list"))
-    form = BookForm(
-        initial={
-            "name": current_book.name,
-            "author": current_book.author,
-            "isbn": current_book.isbn,
-            "pages": current_book.pages,
-            "year": current_book.year,
-        }
-    )
+            return HttpResponseRedirect(reverse("book_list"))
+    else:
+        form = BookForm(
+            initial={
+                "name": current_book.name,
+                "author": current_book.author,
+                "isbn": current_book.isbn,
+                "pages": current_book.pages,
+                "year": current_book.year,
+            }
+        )
 
     return render(request, "books/update.html", {"form": form})
 
 
+@login_required
 def delete(request, book_id):
     """Delete a book record from the system."""
     current_book = Book.objects.get(pk=book_id)
     if request.method == "POST":
         current_book.delete()
         return HttpResponseRedirect(reverse("book_list"))
-    return render(request, "books/delete.html",{"book":current_book} )
+    return render(request, "books/delete.html", {"book": current_book})
 
 
 def list(request):
