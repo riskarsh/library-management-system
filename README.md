@@ -5,7 +5,10 @@
 Clone this project with git clone.
 ```
 git clone https://github.com/riskarsh/library-management-system.git
+cd library-management-system
+
 ```
+
     
 Create a virtual environment
 ```
@@ -34,6 +37,7 @@ DATABASES = {
 ``` 
 Create the table and set-up the database in mysql.
 ```
+cd library
 python manage.py migrate
 ```
 Run the Django application
