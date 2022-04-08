@@ -9,7 +9,10 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def create(request):
-    """Create a new entry for the book."""
+    """Create a new entry for the book.
+
+    :param request: Django request object
+    """
     if request.method == "POST":
         form = BookForm(request.POST)
         if form.is_valid():
@@ -34,7 +37,12 @@ def create(request):
 
 @login_required
 def update(request, book_id):
-    """Update the book records."""
+    """Update the book records.
+
+    :param request:Django request object
+    :param book_id: id of the book to update
+    :type book_id: int
+    """
     current_book = Book.objects.get(pk=book_id)
     if request.method == "POST":
         form = BookForm(request.POST)
@@ -62,7 +70,12 @@ def update(request, book_id):
 
 @login_required
 def delete(request, book_id):
-    """Delete a book record from the system."""
+    """Delete a book record from the system.
+
+    :param request:Django request object
+    :param book_id: id of the book to update
+    :type book_id: int
+    """
     current_book = Book.objects.get(pk=book_id)
     if request.method == "POST":
         current_book.delete()
@@ -71,6 +84,9 @@ def delete(request, book_id):
 
 
 def list(request):
-    """Retrieve all the books listed in the system."""
+    """Retrieve all the books listed in the system.
+
+    :param request:Django request object
+    """
     books = Book.objects.all()
     return render(request, "books/list.html", {"books": books})

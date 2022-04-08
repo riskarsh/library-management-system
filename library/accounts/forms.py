@@ -4,10 +4,12 @@ from .models import LibraryAdmin
 
 
 class SignUpForm(UserCreationForm):
+    """Form to sign up admin user"""
+
     email = forms.EmailField(max_length=254, help_text="Provide a valid email.")
 
     class Meta:
-        """extra information"""
+        """Extra information"""
 
         model = LibraryAdmin
         fields = (

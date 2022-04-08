@@ -3,6 +3,8 @@ from datetime import date
 
 
 class BookForm(forms.Form):
+    """Form to create/update a book."""
+
     name = forms.CharField(label="name", max_length=50)
     author = forms.CharField(label="author")
     isbn = forms.IntegerField(label="isbn")
@@ -21,7 +23,7 @@ class BookForm(forms.Form):
         return data
 
     def clean_pages(self):
-        """validation for year field"""
+        """validation for pages field"""
         data = self.cleaned_data["pages"]
         if data <= 0:
             raise forms.ValidationError("Number of pages can't be 0 or less than 0")

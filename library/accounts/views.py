@@ -5,6 +5,10 @@ from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 def signup(request):
+    """View to signup library admin user.
+
+    :param request: Django request object
+    """
     if request.method == "POST":
         signup_form = SignUpForm(request.POST)
         if signup_form.is_valid():
