@@ -24,6 +24,10 @@ def signup(request):
 
 
 def signin(request):
+    """View to signin library admin user.
+
+    :param request: Django request object
+    """
     if request.method == "POST":
         email = request.POST["username"]
         password = request.POST["password"]
@@ -35,6 +39,10 @@ def signin(request):
 
 
 def signout(request):
+    """View to signout library admin user.
+
+    :param request: Django request object
+    """
     if request.method == "POST":
         logout(request)
         return redirect("book_list")

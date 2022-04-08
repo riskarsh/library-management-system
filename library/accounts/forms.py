@@ -9,7 +9,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text="Provide a valid email.")
 
     class Meta:
-        """Extra information"""
+        """Extra information for the form rendering and behaviour"""
 
         model = LibraryAdmin
         fields = (
